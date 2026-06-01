@@ -1,4 +1,4 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 
 const Services = () => {
   const servicesList = [
@@ -79,16 +79,52 @@ const Services = () => {
     }
   ];
 
+  const gridVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' }
+    }
+  };
+
   return (
     <section className="services section-padding" id="services">
       <div className="container">
-        <div className="services__header">
+        <motion.div 
+          className="services__header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="services__title">Our Core Services</h2>
           <p className="services__subtitle">End-to-end export and logistics solutions tailored for your business.</p>
-        </div>
-        <div className="services__grid">
+        </motion.div>
+        <motion.div 
+          className="services__grid"
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {servicesList.map((service) => (
-            <div className="services__card" key={service.id}>
+            <motion.div 
+              className="services__card" 
+              key={service.id}
+              variants={cardVariants}
+              whileHover={{ y: -6, scale: 1.02, boxShadow: '0 10px 25px rgba(5, 27, 52, 0.06)' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
               <div className="services__card-icon">
                 {service.icon}
               </div>
@@ -96,9 +132,9 @@ const Services = () => {
               <p className={`services__card-desc ${service.highlight ? 'services__card-desc--highlight' : ''}`}>
                 {service.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

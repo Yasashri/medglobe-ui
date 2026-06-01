@@ -1,4 +1,4 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 
 const Highlights = () => {
   const highlightsList = [
@@ -55,12 +55,40 @@ const Highlights = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' }
+    }
+  };
+
   return (
     <section className="highlights">
-      <div className="container">
-        <div className="highlights__wrapper">
+      <div className="container highlights__custom">
+        <motion.div 
+          className="highlights__wrapper"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {highlightsList.map((item) => (
-            <div className="highlights__card" key={item.id}>
+            <motion.div 
+              className="highlights__card" 
+              key={item.id}
+              variants={itemVariants}
+            >
               <div className={`highlights__icon-box highlights__icon-box--${item.color}`}>
                 {item.icon}
               </div>
@@ -68,9 +96,9 @@ const Highlights = () => {
                 <h3 className="highlights__card-title">{item.title}</h3>
                 <p className="highlights__card-desc">{item.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

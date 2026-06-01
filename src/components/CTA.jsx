@@ -1,11 +1,19 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import ctaBottlesImg from '../assets/cta_bottles.png';
 
 const CTA = () => {
   return (
     <section className="cta-section" id="quality">
       <div className="container">
-        <div className="cta" style={{ backgroundImage: `url(${ctaBottlesImg})` }}>
+        <motion.div 
+          className="cta" 
+          style={{ backgroundImage: `url(${ctaBottlesImg})` }}
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
           <div className="cta__bg-overlay"></div>
           <div className="cta__grid">
             {/* Left placeholder to make space for the background bottles */}
@@ -53,7 +61,7 @@ const CTA = () => {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

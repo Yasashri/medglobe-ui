@@ -32,7 +32,7 @@
   }
 
   &__content {
-    padding: 40px 36px;
+    padding: 20px;
     animation: fadeInUp 0.8s ease-out;
     display: flex;
     flex-direction: column;
@@ -163,11 +163,6 @@
     object-fit: cover;
     transition: transform 0.6s ease;
   }
-
-  // Right Side: Why Choose Us Card
-  &__right {
-    height: 100%;
-  }
 }
 
 .why-choose-us {
@@ -177,12 +172,12 @@
   background-position: center;
   background-repeat: no-repeat;
   border-radius: $border-radius-lg;
-  padding: 40px 36px;
+  padding: 20px;
   color: $text-white;
   overflow: hidden;
   box-shadow: $shadow-floating;
   height: 100%;
-  min-height: 420px;
+  //min-height: 420px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -235,7 +230,7 @@
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 5px;
   }
 
   &__item {

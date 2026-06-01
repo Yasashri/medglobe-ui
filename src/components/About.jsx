@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import aboutImg from '../assets/about.png';
 import worldMapImg from '../assets/world_map.png';
 
@@ -19,11 +20,36 @@ const About = () => {
     'Commitment to Long-term Partnerships'
   ];
 
+  const listVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: 20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.5, ease: 'easeOut' }
+    }
+  };
+
   return (
     <section className="about section-padding" id="about">
       <div className="container about__container">
         {/* Left Side: About Info & Image */}
-        <div className="about__left">
+        <motion.div 
+          className="about__left"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
           <div className="about__content">
             <h2 className="about__title">About MedGlobe (Pvt) Ltd</h2>
             <div className="about__underline"></div>
@@ -46,28 +72,43 @@ const About = () => {
               <img src={aboutImg} alt="Sri Lankan Port Logistics" className="about__image" />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Side: Why Choose Us Dark Box */}
-        <div className="about__right">
-          <div className="why-choose-us" style={{ backgroundImage: `url(${worldMapImg})` }}>
-            <div className="why-choose-us__overlay"></div>
-            <div className="why-choose-us__content">
-              <h2 className="why-choose-us__title">Why Choose Us?</h2>
-              <div className="why-choose-us__divider"></div>
-              <ul className="why-choose-us__list">
-                {features.map((feature, idx) => (
-                  <li className="why-choose-us__item" key={idx}>
-                    <div className="why-choose-us__icon-wrapper">
-                      {checkIcon}
-                    </div>
-                    <span className="why-choose-us__text">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <motion.div 
+          className="why-choose-us" 
+          style={{ backgroundImage: `url(${worldMapImg})` }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+        >
+          <div className="why-choose-us__overlay"></div>
+          <div className="why-choose-us__content">
+            <h2 className="why-choose-us__title">Why Choose Us?</h2>
+            <div className="why-choose-us__divider"></div>
+            <motion.ul 
+              className="why-choose-us__list"
+              variants={listVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {features.map((feature, idx) => (
+                <motion.li 
+                  className="why-choose-us__item" 
+                  key={idx}
+                  variants={itemVariants}
+                >
+                  <div className="why-choose-us__icon-wrapper">
+                    {checkIcon}
+                  </div>
+                  <span className="why-choose-us__text">{feature}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

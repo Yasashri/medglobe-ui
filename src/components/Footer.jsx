@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from './Logo';
 import worldMapImg from '../assets/world_map.png';
 
@@ -16,7 +15,7 @@ const Footer = () => {
       <div className="container footer__container">
         {/* Column 1: Brand Info */}
         <div className="footer__col footer__col--brand">
-          <Logo light={true} />
+          <Logo className="footer__logo" />
           <div className="footer__socials">
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">

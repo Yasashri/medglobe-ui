@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use "variables" as *;
 
 .footer {
   position: relative;
@@ -7,11 +7,22 @@
   background-position: center;
   background-repeat: no-repeat;
   color: rgba(255, 255, 255, 0.7);
-  padding: 80px 0 0 0;
+  padding: 40px 0 0 0;
   overflow: hidden;
 
   @include tablet {
     padding-top: 60px;
+    .footer {
+      &__col {
+        &--brand {
+          .logo {
+            img {
+              margin-left: -14px;
+            }
+          }
+        }
+      }
+    }
   }
 
   // Map watermark overlay
@@ -21,7 +32,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(5, 27, 52, 0.98) 0%, rgba(3, 16, 32, 0.96) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(5, 27, 52, 0.98) 0%,
+      rgba(3, 16, 32, 0.96) 100%
+    );
     z-index: 1;
   }
 
@@ -51,9 +66,22 @@
 
     &--brand {
       gap: 20px;
-      
+
       .logo {
         margin-bottom: 8px;
+
+        img {
+          height: 140px;
+          margin-left: -27px;
+
+          @include desktop {
+            height: 110px;
+          }
+
+          @include mobile {
+            height: 90px;
+          }
+        }
       }
     }
   }
@@ -82,7 +110,7 @@
   }
 
   &__title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: $text-white;
@@ -90,7 +118,7 @@
     padding-bottom: 8px;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;

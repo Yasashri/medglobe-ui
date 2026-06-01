@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 .hero {
-  background: $bg-gradient-hero;
+  /* background: $bg-gradient-hero; */
   padding: 180px 0 140px 0; // Accommodate absolute header floating on top
   position: relative;
   overflow: hidden;
@@ -31,9 +31,11 @@
 
   &__container {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.2fr 0.8fr;
     align-items: center;
     gap: 48px;
+    position: relative;
+    z-index: 10;
 
     @include tablet {
       grid-template-columns: 1fr;
@@ -47,13 +49,13 @@
   }
 
   &__title {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 3.5rem;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.15;
     color: $blue-navy;
     margin-bottom: 24px;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
 
     @include widescreen {
       font-size: 3rem;
@@ -106,49 +108,124 @@
       gap: 12px;
       padding: 0 20px;
     }
-  }
 
-  &__btn {
-    min-width: 160px;
-  }
+    .btn {
+      border-radius: 8px !important;
+      padding: 14px 28px;
+      font-size: 1rem;
+      min-width: 160px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      
+      svg {
+        margin-left: 4px;
+      }
+    }
 
-  &__graphic {
-    position: relative;
-    animation: slideInRight 0.8s ease-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .btn--secondary {
+      background-color: #051b34;
+      border: 1px solid #051b34;
+      
+      &:hover {
+        background-color: #031020;
+        border-color: #031020;
+        box-shadow: 0 8px 20px rgba(5, 27, 52, 0.2);
+      }
+    }
 
-  &__image-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-    border-radius: $border-radius-lg;
-    overflow: hidden;
-    box-shadow: $shadow-lg;
-    background-color: transparent;
-    transition: transform 0.5s ease;
+    .btn--outline {
+      background-color: #ffffff;
+      border: 1.5px solid $green-primary;
+      color: $blue-navy;
+      box-shadow: $shadow-sm;
 
-    &:hover {
-      transform: scale(1.02);
+      svg {
+        stroke: $blue-navy;
+      }
+
+      &:hover {
+        background-color: $green-primary;
+        color: $text-white;
+        border-color: $green-primary;
+        box-shadow: 0 8px 20px rgba(40, 167, 69, 0.2);
+
+        svg {
+          stroke: $text-white;
+        }
+      }
     }
   }
 
-  &__image {
-    width: 100%;
-    object-fit: cover;
-    aspect-ratio: 1 / 1;
+  &__background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: calc((100vw - 1320px) / 2 + 24px);
+    width: 850px; // align inside the 1320px container
+    z-index: 1;
+    pointer-events: none;
+    animation: slideInRight 0.8s ease-out;
+
+    @media (max-width: 1368px) {
+      right: 24px;
+      width: 62%;
+    }
+
+    @include tablet {
+      width: 100%;
+      right: 0;
+      z-index: 0;
+    }
   }
 
-  &__glow-effect {
+  &__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    
+    @include tablet {
+      opacity: 0.18; // Make it extremely faint on mobile behind the text
+    }
+  }
+
+  &__fade-overlay {
     position: absolute;
-    top: -10%;
-    left: -10%;
-    right: -10%;
-    bottom: -10%;
-    background: radial-gradient(circle, rgba(40, 167, 69, 0.15) 0%, rgba(5, 27, 52, 0) 70%);
-    z-index: -1;
+    top: 0;
+    left: -1px;
+    width: 55%;
+    height: 100%;
+    // Smooth multi-stop gradient to fade from background color into transparent
+    background: linear-gradient(
+      to right,
+      #f8f9fa 0%,
+      rgba(248, 249, 250, 0.98) 15%,
+      rgba(248, 249, 250, 0.85) 35%,
+      rgba(248, 249, 250, 0.5) 60%,
+      rgba(248, 249, 250, 0) 100%
+    );
+    z-index: 2;
+
+    @include tablet {
+      width: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(248, 249, 250, 0.7) 0%,
+        rgba(248, 249, 250, 0.9) 80%,
+        #f8f9fa 100%
+      );
+    }
+  }
+
+  &__placeholder {
+    // Keeps the right column of the grid empty to let the background image shine through
+    height: 100%;
     pointer-events: none;
+    
+    @include tablet {
+      display: none;
+    }
   }
 }

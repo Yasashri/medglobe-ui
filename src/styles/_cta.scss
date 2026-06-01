@@ -1,96 +1,103 @@
 @use 'variables' as *;
 
+.cta-section {
+  padding: 40px 0;
+  
+  @include mobile {
+    padding: 24px 0;
+  }
+}
+
 .cta {
   position: relative;
-  background: linear-gradient(135deg, #0a3d1d 0%, #031c0c 100%);
+  background-color: #031c0c;
   color: $text-white;
-  padding: 60px 0;
-  overflow: visible; // Allows the bottle image to overlap the boundaries
+  border-radius: 16px;
+  overflow: hidden;
   box-shadow: $shadow-lg;
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  padding: 24px 32px;
 
   @include desktop {
-    padding: 60px 0;
-    overflow: hidden; // Clip overlapping elements on smaller screens to prevent layouts breaking
+    padding: 32px 24px;
+    border-radius: 12px;
   }
 
-  // Soft foliage leafy watermark pattern
-  &::before {
-    content: '';
+  &__bg-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px);
-    background-size: 24px 24px;
-    opacity: 0.4;
+    background: linear-gradient(
+      to right,
+      rgba(3, 28, 12, 0) 0%,
+      rgba(3, 28, 12, 0.4) 20%,
+      rgba(3, 28, 12, 0.85) 45%,
+      rgba(3, 28, 12, 0.98) 75%,
+      #031c0c 100%
+    );
+    z-index: 1;
     pointer-events: none;
+
+    @include desktop {
+      background: linear-gradient(
+        to bottom,
+        rgba(3, 28, 12, 0.2) 0%,
+        rgba(3, 28, 12, 0.8) 50%,
+        #031c0c 100%
+      );
+    }
   }
 
-  &__container {
+  &__grid {
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr 1fr;
+    grid-template-columns: 240px 1.2fr auto auto;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
     position: relative;
     z-index: 2;
+    width: 100%;
 
     @include desktop {
-      grid-template-columns: 1fr 1.2fr;
-      gap: 30px;
-    }
-
-    @include tablet {
       grid-template-columns: 1fr;
       text-align: center;
-      gap: 32px;
+      gap: 24px;
     }
   }
 
-  &__graphic {
-    position: relative;
+  &__placeholder {
+    width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    pointer-events: none;
 
     @include desktop {
-      display: none; // Hide bottles on medium and smaller screens to prioritize text
-    }
-  }
-
-  &__image {
-    position: absolute;
-    top: -110px;
-    bottom: -110px;
-    max-height: 380px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-    &:hover {
-      transform: scale(1.05) rotate(2deg);
+      display: none;
     }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 6px;
     animation: fadeInUp 0.8s ease-out;
 
-    @include tablet {
+    @include desktop {
       align-items: center;
     }
   }
 
   &__title {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Playfair Display', Georgia, serif; // Editorial serif heading matching hero title
     font-size: 2.25rem;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -0.5px;
-    line-height: 1.2;
+    line-height: 1.25;
 
     @include mobile {
       font-size: 1.8rem;
@@ -98,52 +105,49 @@
   }
 
   &__description {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.8);
     max-width: 480px;
     line-height: 1.5;
 
     @include mobile {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  &__vertical-divider {
+    width: 1px;
+    height: 52px;
+    background-color: rgba(255, 255, 255, 0.2);
+
+    @include desktop {
+      display: none; // hide divider on vertical stacked mobile layouts
     }
   }
 
   &__contact-actions {
     display: flex;
-    flex-direction: column;
-    gap: 24px;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    gap: 36px;
     animation: fadeInUp 0.8s ease-out;
 
     @include desktop {
-      align-items: flex-end;
-    }
-
-    @include tablet {
+      flex-direction: column;
+      gap: 20px;
       align-items: center;
+      width: 100%;
     }
   }
 
   &__contact-info {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 100%;
+    gap: 10px;
+    width: auto;
 
     @include desktop {
-      align-items: flex-end;
-    }
-
-    @include tablet {
       align-items: center;
-      flex-direction: row;
-      justify-content: center;
-      gap: 24px;
-    }
-
-    @include mobile {
-      flex-direction: column;
-      gap: 12px;
     }
   }
 
@@ -152,21 +156,16 @@
     align-items: center;
     gap: 12px;
     font-weight: 600;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.95);
     transition: color 0.3s ease;
 
     &:hover {
       color: $green-primary;
-      
-      .cta__contact-icon {
-        background-color: $green-primary;
-        color: $text-white;
-      }
     }
 
     @include mobile {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 
@@ -174,19 +173,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
     color: $green-primary;
     transition: all 0.3s ease;
+    
+    // Circle phone styles are handled inside SVG stroke
+    &--phone {
+      color: $text-white;
+      
+      svg {
+        stroke: $text-white;
+        
+        circle {
+          stroke: $green-primary; // green outline wrapping telephone receiver
+        }
+      }
+    }
+
+    // Email envelope styles
+    &--email {
+      color: $text-white;
+      svg {
+        stroke: $text-white;
+      }
+    }
   }
 
   &__btn {
-    min-width: 180px;
-    box-shadow: 0 4px 14px rgba(40, 167, 69, 0.4);
+    min-width: 160px;
+    padding: 12px 24px;
+    background-color: $green-primary;
+    border-radius: 8px !important; // Rounded corner style matching hero
+    box-shadow: 0 4px 14px rgba(40, 167, 69, 0.2);
 
-    @include tablet {
+    &:hover {
+      background-color: $green-dark;
+      box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    }
+
+    @include desktop {
       width: 100%;
       max-width: 250px;
     }

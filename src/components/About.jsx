@@ -4,8 +4,9 @@ import worldMapImg from '../assets/world_map.png';
 
 const About = () => {
   const checkIcon = (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#28a745" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '12px', flexShrink: 0 }}>
-      <polyline points="20 6 9 17 4 12" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+      <circle cx="12" cy="12" r="10" fill="#28a745" stroke="#28a745" />
+      <polyline points="7.5 12 10.5 15 16.5 9" />
     </svg>
   );
 

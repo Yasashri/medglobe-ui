@@ -45,17 +45,24 @@
     transition: all 0.3s ease;
     border-radius: $border-radius-md;
 
+    @media (min-width: 993px) {
+      &:not(:last-child) {
+        border-right: 1px solid $border-color-light;
+        padding-right: 24px;
+      }
+    }
+
     &:hover {
       background-color: $bg-light;
       transform: translateY(-4px);
 
-      .highlights__icon-box {
+      .highlights__icon-box--green {
         background-color: $green-primary;
-        color: $text-white;
-
-        svg {
-          stroke: $text-white;
-        }
+        svg { stroke: $text-white; }
+      }
+      .highlights__icon-box--blue {
+        background-color: #0b548c;
+        svg { stroke: $text-white; }
       }
     }
 
@@ -71,12 +78,19 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: $green-light;
     flex-shrink: 0;
     transition: all 0.4s ease;
 
     svg {
       transition: all 0.4s ease;
+    }
+
+    &--green {
+      background-color: $green-light;
+    }
+
+    &--blue {
+      background-color: rgba(11, 84, 140, 0.08);
     }
   }
 

@@ -13,9 +13,9 @@
     align-items: stretch;
     width: 100%;
     // Match left logo margin to the page container alignment
-    padding-left: calc((100vw - 1200px) / 2 + 24px);
+    padding-left: calc((100vw - 1320px) / 2 + 24px);
     
-    @media (max-width: 1248px) {
+    @media (max-width: 1368px) {
       padding-left: 24px;
     }
     
@@ -67,11 +67,11 @@
   gap: 32px;
   padding: 12px 0;
   // Align right side to the page container width
-  padding-right: calc((100vw - 1200px) / 2 + 24px);
+  padding-right: calc((100vw - 1320px) / 2 + 24px);
   font-size: 0.85rem;
   color: $text-medium;
 
-  @media (max-width: 1248px) {
+  @media (max-width: 1368px) {
     padding-right: 24px;
   }
 
@@ -142,12 +142,12 @@
   justify-content: space-between;
   align-items: center;
   // Make the capsule stretch to screen edge on the right
-  padding-right: calc((100vw - 1200px) / 2 + 24px);
+  padding-right: calc((100vw - 1320px) / 2 + 24px);
   border-left: 1px solid $border-color-light;
   border-top: 1px solid $border-color-light;
   border-bottom: 1px solid $border-color-light;
 
-  @media (max-width: 1248px) {
+  @media (max-width: 1368px) {
     padding-right: 24px;
   }
 

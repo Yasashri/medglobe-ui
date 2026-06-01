@@ -38,23 +38,29 @@
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
 
     @include desktop {
       grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
 
     @include mobile {
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 16px;
     }
   }
 
   &__card {
     background-color: $bg-white;
     border-radius: $border-radius-md;
-    padding: 40px 30px;
+    padding: 36px 14px;
     text-align: center;
     border: 1px solid $border-color-light;
     box-shadow: $shadow-card;
@@ -62,6 +68,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%; // ensures equal card heights in row
 
     &:hover {
       transform: translateY(-8px);
@@ -78,6 +85,10 @@
       }
     }
 
+    @media (max-width: 1200px) {
+      padding: 40px 24px;
+    }
+
     @include mobile {
       padding: 30px 20px;
     }
@@ -87,12 +98,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80px;
-    height: 80px;
-    border-radius: $border-radius-md;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%; // Circular bubbles matching the mock
     background-color: $green-light;
     margin-bottom: 24px;
     transition: all 0.4s ease;
+    flex-shrink: 0;
 
     svg {
       transition: all 0.4s ease;
@@ -101,15 +113,24 @@
 
   &__card-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: $blue-navy;
     margin-bottom: 12px;
+    min-height: 48px; // ensures alignment on varying text lengths
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__card-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: $text-medium;
-    line-height: 1.5;
+    line-height: 1.45;
+
+    &--highlight {
+      color: #0b548c; // Royal/Teal blue color highlight from attached mock image
+      font-weight: 600;
+    }
   }
 }

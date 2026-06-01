@@ -1,0 +1,213 @@
+@use 'variables' as *;
+
+.about {
+  background-color: $bg-white;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+
+    @include desktop {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  &__content {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  &__title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: $blue-navy;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  &__underline {
+    width: 60px;
+    height: 4px;
+    background-color: $green-primary;
+    border-radius: $border-radius-full;
+    margin-bottom: 24px;
+  }
+
+  &__desc {
+    font-size: 1.05rem;
+    color: $text-medium;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  &__btn {
+    margin-top: 12px;
+    align-self: flex-start;
+  }
+
+  &__graphic {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__image-frame {
+    width: 100%;
+    max-width: 450px;
+    height: 280px;
+    overflow: hidden;
+    // Elegant asymmetrical organic shape
+    border-radius: 120px 20px 120px 20px;
+    box-shadow: $shadow-lg;
+    border: 6px solid $bg-light;
+    transition: all 0.5s ease;
+
+    &:hover {
+      border-radius: 20px 120px 20px 120px;
+      transform: scale(1.02);
+      
+      .about__image {
+        transform: scale(1.08);
+      }
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  // Right Side: Why Choose Us Card
+  &__right {
+    height: 100%;
+  }
+}
+
+.why-choose-us {
+  position: relative;
+  background-color: $blue-navy;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: $border-radius-lg;
+  padding: 56px 48px;
+  color: $text-white;
+  overflow: hidden;
+  box-shadow: $shadow-floating;
+  height: 100%;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeInUp 0.8s ease-out;
+
+  @include tablet {
+    padding: 40px 24px;
+    min-height: 480px;
+  }
+
+  // Semi-transparent overlay to ensure readability over map background
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(5, 27, 52, 0.95) 0%, rgba(3, 16, 32, 0.85) 100%);
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    
+    @include mobile {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__divider {
+    width: 50px;
+    height: 3px;
+    background-color: $green-primary;
+    border-radius: $border-radius-full;
+    margin-bottom: 32px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateX(6px);
+      
+      .why-choose-us__icon-wrapper {
+        transform: scale(1.1);
+        background-color: $green-primary;
+
+        svg {
+          stroke: $text-white;
+        }
+      }
+    }
+  }
+
+  &__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(40, 167, 69, 0.15);
+    margin-right: 16px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+
+    svg {
+      margin-right: 0 !important; // override inline style
+      stroke: $green-primary;
+      width: 16px;
+      height: 16px;
+      transition: all 0.3s ease;
+    }
+  }
+
+  &__text {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+
+    @include mobile {
+      font-size: 0.95rem;
+    }
+  }
+}

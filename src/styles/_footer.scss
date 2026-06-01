@@ -1,0 +1,187 @@
+@use 'variables' as *;
+
+.footer {
+  position: relative;
+  background-color: $blue-dark;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 80px 0 0 0;
+  overflow: hidden;
+
+  @include tablet {
+    padding-top: 60px;
+  }
+
+  // Map watermark overlay
+  &__map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(5, 27, 52, 0.98) 0%, rgba(3, 16, 32, 0.96) 100%);
+    z-index: 1;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+
+    @include desktop {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &--brand {
+      gap: 20px;
+      
+      .logo {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: 12px;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: $green-primary;
+        color: $text-white;
+        transform: translateY(-3px);
+      }
+    }
+  }
+
+  &__title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $text-white;
+    position: relative;
+    padding-bottom: 8px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background-color: $green-primary;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    a {
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $green-primary;
+        padding-left: 6px;
+      }
+    }
+
+    &--services {
+      li {
+        display: flex;
+        align-items: center;
+        font-size: 0.95rem;
+
+        svg {
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+
+      svg {
+        margin-top: 3px;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  // Footer Bottom Bar
+  &__bottom {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 24px 0;
+    font-size: 0.85rem;
+  }
+
+  &__bottom-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mobile {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+
+  &__bottom-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    a {
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $green-primary;
+      }
+    }
+
+    span {
+      color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}

@@ -1,0 +1,182 @@
+@use '/src/styles/variables' as *;
+@use './header';
+@use './hero';
+@use './highlights';
+@use './services';
+@use './about';
+@use './cta';
+@use './footer';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+
+// CSS Reset & Global Styles
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-sans;
+  background-color: $bg-light;
+  color: $text-dark;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Utility Classes
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  
+  @include mobile {
+    padding: 0 16px;
+  }
+}
+
+.section-padding {
+  padding: 80px 0;
+  
+  @include tablet {
+    padding: 60px 0;
+  }
+  
+  @include mobile {
+    padding: 48px 0;
+  }
+}
+
+// Micro-animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+  }
+}
+
+// Button components
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: $border-radius-full;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  svg {
+    transition: transform 0.3s ease;
+  }
+  
+  &--primary {
+    background-color: $green-primary;
+    color: $text-white;
+    
+    &:hover {
+      background-color: $green-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+      
+      svg {
+        transform: translate(2px, -2px);
+      }
+    }
+  }
+  
+  &--secondary {
+    background-color: $blue-navy;
+    color: $text-white;
+    
+    &:hover {
+      background-color: $blue-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(5, 27, 52, 0.3);
+      
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+  
+  &--outline {
+    background-color: transparent;
+    border: 2px solid $blue-navy;
+    color: $blue-navy;
+    
+    &:hover {
+      background-color: $blue-navy;
+      color: $text-white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(5, 27, 52, 0.15);
+      
+      svg {
+        transform: rotate(15deg);
+      }
+    }
+  }
+}
+
+// Component Imports will be appended below
+

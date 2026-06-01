@@ -1,0 +1,101 @@
+@use 'variables' as *;
+
+.highlights {
+  position: relative;
+  z-index: 10;
+  margin-top: -80px; // Negative margin to overlap the Hero section
+  padding: 0;
+
+  @include tablet {
+    margin-top: -60px;
+  }
+
+  @include mobile {
+    margin-top: -40px;
+  }
+
+  &__wrapper {
+    background-color: $bg-white;
+    border-radius: $border-radius-lg;
+    padding: 30px;
+    box-shadow: $shadow-floating;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    border: 1px solid $border-color-light;
+
+    @include desktop {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      padding: 24px;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 20px;
+    }
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px;
+    transition: all 0.3s ease;
+    border-radius: $border-radius-md;
+
+    &:hover {
+      background-color: $bg-light;
+      transform: translateY(-4px);
+
+      .highlights__icon-box {
+        background-color: $green-primary;
+        color: $text-white;
+
+        svg {
+          stroke: $text-white;
+        }
+      }
+    }
+
+    @include mobile {
+      padding: 8px;
+    }
+  }
+
+  &__icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: $green-light;
+    flex-shrink: 0;
+    transition: all 0.4s ease;
+
+    svg {
+      transition: all 0.4s ease;
+    }
+  }
+
+  &__text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $blue-navy;
+  }
+
+  &__card-desc {
+    font-size: 0.85rem;
+    color: $text-medium;
+    line-height: 1.35;
+  }
+}
